@@ -15,6 +15,15 @@ SHOW TABLES;
 │ taxi_yellow                             │
 └─────────────────────────────────────────┘
 
+-- ALTER TABLE bike_data ADD filename VARCHAR;
+-- ALTER TABLE central_park_weather ADD filename VARCHAR;
+-- ALTER TABLE daily_citi_bike_trip_counts_and_weather ADD filename VARCHAR;
+-- ALTER TABLE fhv_bases ADD filename VARCHAR;
+-- ALTER TABLE fhv_tripdata ADD filename VARCHAR;
+-- ALTER TABLE fhvhv_tripdata ADD filename VARCHAR;
+-- ALTER TABLE taxi_yellow ADD filename VARCHAR;
+-- ALTER TABLE taxi_green ADD filename VARCHAR;
+
 --print a list of schemas
 DESCRIBE bike_data;
 ┌─────────────────────────┬─────────────┬─────────┬─────────┬─────────┬───────┐
@@ -49,8 +58,9 @@ DESCRIBE bike_data;
 │ end_lat                 │ DOUBLE      │ YES     │         │         │       │
 │ end_lng                 │ DOUBLE      │ YES     │         │         │       │
 │ member_casual           │ VARCHAR     │ YES     │         │         │       │
+│ filename                │ VARCHAR     │ YES     │         │         │       │
 ├─────────────────────────┴─────────────┴─────────┴─────────┴─────────┴───────┤
-│ 28 rows                                                           6 columns │
+│ 29 rows                                                           6 columns │
 └─────────────────────────────────────────────────────────────────────────────┘
 DESCRIBE central_park_weather;
 ┌─────────────┬─────────────┬─────────┬─────────┬─────────┬───────┐
@@ -66,7 +76,10 @@ DESCRIBE central_park_weather;
 │ SNWD        │ DOUBLE      │ YES     │         │         │       │
 │ TMAX        │ BIGINT      │ YES     │         │         │       │
 │ TMIN        │ BIGINT      │ YES     │         │         │       │
-└─────────────┴─────────────┴─────────┴─────────┴─────────┴───────┘
+│ filename    │ VARCHAR     │ YES     │         │         │       │
+├─────────────┴─────────────┴─────────┴─────────┴─────────┴───────┤
+│ 10 rows                                               6 columns │
+└─────────────────────────────────────────────────────────────────┘
 DESCRIBE daily_citi_bike_trip_counts_and_weather;
 ┌─────────────────────┬─────────────┬─────────┬─────────┬─────────┬───────┐
 │     column_name     │ column_type │  null   │   key   │ default │ extra │
@@ -86,20 +99,22 @@ DESCRIBE daily_citi_bike_trip_counts_and_weather;
 │ stations_in_service │ VARCHAR     │ YES     │         │         │       │
 │ weekday             │ BOOLEAN     │ YES     │         │         │       │
 │ weekday_non_holiday │ BOOLEAN     │ YES     │         │         │       │
+│ filename            │ VARCHAR     │ YES     │         │         │       │
 │ snow_depth          │ DOUBLE      │ YES     │         │         │       │
 ├─────────────────────┴─────────────┴─────────┴─────────┴─────────┴───────┤
-│ 15 rows                                                       6 columns │
+│ 16 rows                                                       6 columns │
 └─────────────────────────────────────────────────────────────────────────┘
 DESCRIBE fhv_bases;
-┌─────────────┬─────────────┬─────────┬─────────┬─────────┬───────┐
-│ column_name │ column_type │  null   │   key   │ default │ extra │
-│   varchar   │   varchar   │ varchar │ varchar │ varchar │ int32 │
-├─────────────┼─────────────┼─────────┼─────────┼─────────┼───────┤
-│ column0     │ VARCHAR     │ YES     │         │         │       │
-│ column1     │ VARCHAR     │ YES     │         │         │       │
-│ column2     │ VARCHAR     │ YES     │         │         │       │
-│ column3     │ VARCHAR     │ YES     │         │         │       │
-└─────────────┴─────────────┴─────────┴─────────┴─────────┴───────┘
+┌──────────────┬─────────────┬─────────┬─────────┬─────────┬───────┐
+│ column_name  │ column_type │  null   │   key   │ default │ extra │
+│   varchar    │   varchar   │ varchar │ varchar │ varchar │ int32 │
+├──────────────┼─────────────┼─────────┼─────────┼─────────┼───────┤
+│ base_number  │ VARCHAR     │ YES     │         │         │       │
+│ base_name    │ VARCHAR     │ YES     │         │         │       │
+│ dba          │ VARCHAR     │ YES     │         │         │       │
+│ dba_category │ VARCHAR     │ YES     │         │         │       │
+│ filename     │ VARCHAR     │ YES     │         │         │       │
+└──────────────┴─────────────┴─────────┴─────────┴─────────┴───────┘
 DESCRIBE fhv_tripdata;
 ┌────────────────────────┬─────────────┬─────────┬─────────┬─────────┬───────┐
 │      column_name       │ column_type │  null   │   key   │ default │ extra │
@@ -112,6 +127,7 @@ DESCRIBE fhv_tripdata;
 │ DOlocationID           │ DOUBLE      │ YES     │         │         │       │
 │ SR_Flag                │ INTEGER     │ YES     │         │         │       │
 │ Affiliated_base_number │ VARCHAR     │ YES     │         │         │       │
+│ filename               │ VARCHAR     │ YES     │         │         │       │
 └────────────────────────┴─────────────┴─────────┴─────────┴─────────┴───────┘
 DESCRIBE fhvhv_tripdata;
 ┌──────────────────────┬─────────────┬─────────┬─────────┬─────────┬───────┐
@@ -141,9 +157,10 @@ DESCRIBE fhvhv_tripdata;
 │ access_a_ride_flag   │ VARCHAR     │ YES     │         │         │       │
 │ wav_request_flag     │ VARCHAR     │ YES     │         │         │       │
 │ wav_match_flag       │ VARCHAR     │ YES     │         │         │       │
+│ filename             │ VARCHAR     │ YES     │         │         │       │
 │ DOLocationID         │ BIGINT      │ YES     │         │         │       │
 ├──────────────────────┴─────────────┴─────────┴─────────┴─────────┴───────┤
-│ 24 rows                                                        6 columns │
+│ 25 rows                                                        6 columns │
 └──────────────────────────────────────────────────────────────────────────┘
 DESCRIBE taxi_yellow;
 ┌───────────────────────┬─────────────┬─────────┬─────────┬─────────┬───────┐
@@ -169,8 +186,9 @@ DESCRIBE taxi_yellow;
 │ total_amount          │ DOUBLE      │ YES     │         │         │       │
 │ congestion_surcharge  │ DOUBLE      │ YES     │         │         │       │
 │ airport_fee           │ INTEGER     │ YES     │         │         │       │
+│ filename              │ VARCHAR     │ YES     │         │         │       │
 ├───────────────────────┴─────────────┴─────────┴─────────┴─────────┴───────┤
-│ 19 rows                                                         6 columns │
+│ 20 rows                                                         6 columns │
 └───────────────────────────────────────────────────────────────────────────┘
 DESCRIBE taxi_green;
 ┌───────────────────────┬─────────────┬─────────┬─────────┬─────────┬───────┐
@@ -197,8 +215,9 @@ DESCRIBE taxi_green;
 │ payment_type          │ DOUBLE      │ YES     │         │         │       │
 │ trip_type             │ DOUBLE      │ YES     │         │         │       │
 │ congestion_surcharge  │ DOUBLE      │ YES     │         │         │       │
+│ filename              │ VARCHAR     │ YES     │         │         │       │
 ├───────────────────────┴─────────────┴─────────┴─────────┴─────────┴───────┤
-│ 20 rows                                                         6 columns │
+│ 21 rows                                                         6 columns │
 └───────────────────────────────────────────────────────────────────────────┘
 
 
