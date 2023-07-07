@@ -9,10 +9,10 @@ renamed as (
         station,
         name,
         cast(date as date) as date,
-        cast(awnd as double) as awnd,
+        cast(awnd as double) as average_wind_speed,
         cast(prcp as double) as precipitation,
         cast(snow as double) as snow,
-        cast(snwd as double) as snwd,
+        cast(snwd as double) as snow_depth,
         cast(tmax as int) as temperature_max,
         cast(tmin as int) as temperature_min,
         filename
