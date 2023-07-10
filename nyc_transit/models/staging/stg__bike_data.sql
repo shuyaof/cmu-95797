@@ -4,25 +4,27 @@ with source as (
     select * from {{ source('main','bike_data') }}
 
 ),
+
 renamed as (
     select
-        cast(coalesce(bikeid, ride_id) as int) as bike_id,
+        bikeid::integer as bike_id, 
+        ride_id,
         rideable_type as ride_type,
         usertype as user_type,
-        cast(gender as int) as gender,
+        gender::integer as gender,
         member_casual,
-        cast('birth year' as int) as birth_year,
-        cast(tripduration as int) as trip_duration,
-        cast(coalesce(starttime, started_at) as timestamp) as started_at_ts,
-        cast(coalesce(stoptime, ended_at) as timestamp) as end_at_ts,
-        cast(coalesce('start station id', start_station_id) as int) as start_station_id,
-        coalesce('start station name', start_station_name) as start_station_name,
-        cast(coalesce('start station latitude', start_lat) as int) as start_station_lat,
-        cast(coalesce('start station longitude', start_lng) as int) as start_station_lng,
-        cast(coalesce('end station id', end_station_id) as int) as end_station_id,
-        coalesce('end station name', end_station_name) as end_station_name,
-        cast(coalesce('end station latitude', end_lat) as int) as end_station_lat,
-        cast(coalesce('end station longitude', end_lng) as int) as end_station_lng,
+        "birth year"::integer as birth_year,
+        coalesce(tripduration,0)::integer as trip_duration,
+        coalesce(starttime, started_at) ::timestamp as started_at_ts,
+        coalesce(stoptime, ended_at)::timestamp as end_at_ts,
+        coalesce("start station id", start_station_id) as start_station_id,
+        coalesce("start station name", start_station_name) as start_station_name,
+        coalesce("start station latitude", start_lat)::double as start_station_lat,
+        coalesce("start station longitude", start_lng)::double as start_station_lng,
+        coalesce("end station id", end_station_id) as end_station_id,
+        coalesce("end station name", end_station_name) as end_station_name,
+        coalesce("end station latitude", end_lat)::double as end_station_lat,
+        coalesce("end station longitude", end_lng)::double as end_station_lng,
         filename
     from source
 )

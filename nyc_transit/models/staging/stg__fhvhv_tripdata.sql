@@ -23,13 +23,13 @@ renamed as (
         sales_tax,
         congestion_surcharge,
         airport_fee,
-        tips
+        tips,
         driver_pay,
-        cast(shared_request_flag as boolean) as shared_request_flag,
-        cast(shared_match_flag as boolean) as shared_match_flag,
-        cast(access_a_ride_flag as boolean) as access_a_ride_flag,
-        cast(wav_request_flag as boolean) as wav_request_flag,
-        cast(wav_match_flag as boolean) as wav_match_flag,
+        {{get_flag_schema('shared_request_flag')}} as shared_request_flag,
+        {{get_flag_schema('shared_match_flag')}} as shared_match_flag,
+        {{get_flag_schema('access_a_ride_flag')}} as access_a_ride_flag,
+        {{get_flag_schema('wav_request_flag')}} as wav_request_flag,
+        {{get_flag_schema('wav_match_flag')}} as wav_match_flag,
         filename
     from source
 )

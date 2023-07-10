@@ -9,7 +9,7 @@ renamed as (
         VendorID as vendor_id,
         lpep_pickup_datetime as meter_engaged_dt,
         lpep_dropoff_datetime as meter_disengaged_dt,
-        cast(store_and_fwd_flag as boolean) as store_fwd_flag,
+        {{get_flag_schema('store_and_fwd_flag')}} as store_fwd_flag,
         cast(RatecodeID as int) as rate_code_id,
         PUlocationID as pick_up_loc_id,
         DOlocationID as drop_off_loc_id,

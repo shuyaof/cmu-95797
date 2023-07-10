@@ -8,13 +8,13 @@ renamed as (
     select 
         station,
         name,
-        cast(date as date) as date,
-        cast(awnd as double) as average_wind_speed,
-        cast(prcp as double) as precipitation,
-        cast(snow as double) as snow,
-        cast(snwd as double) as snow_depth,
-        cast(tmax as int) as temperature_max,
-        cast(tmin as int) as temperature_min,
+        date::date as date,
+        awnd::double as average_wind_speed,
+        prcp::double as precipitation,
+        snow::double as snow,
+        snwd::double as snow_depth,
+        tmax::integer as temperature_max,
+        tmin::integer as temperature_min,
         filename
     from source
 )
