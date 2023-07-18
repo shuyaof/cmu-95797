@@ -33,7 +33,10 @@ models:
       - name: filename
         description: ""
         tests:
+          - not_null
           - dbt_expectations.expect_column_to_exist
+          - dbt_expectations.expect_column_values_to_match_like_pattern:
+              like_pattern: "%.csv"
 
   - name: stg__bike_data
     description: ""
@@ -121,6 +124,9 @@ models:
         description: ""
         tests:
           - dbt_expectations.expect_column_to_exist
+          - not_null
+          - dbt_expectations.expect_column_values_to_match_like_pattern:
+              like_pattern: "%.csv.gz"
         
   - name: stg__fhv_tripdata
     description: ""
@@ -166,7 +172,10 @@ models:
       - name: filename
         description: ""
         tests:
+          - not_null
           - dbt_expectations.expect_column_to_exist
+          - dbt_expectations.expect_column_values_to_match_like_pattern:
+              like_pattern: "%.parquet"
 
   - name: stg__fhvhv_tripdata
     description: ""
@@ -175,16 +184,26 @@ models:
         description: ""
         tests:
           - dbt_expectations.expect_column_to_exist
+          - dbt_expectations.expect_column_distinct_values_to_be_in_set:
+              value_set: ['HV0002','HV0003','HV0004','HV0005']
 
       - name: dispatching_base_num
         description: ""
         tests:
           - dbt_expectations.expect_column_to_exist
+          - dbt_expectations.expect_column_value_lengths_to_equal:
+              value: 6
+          - dbt_expectations.expect_column_values_to_match_like_pattern:
+              like_pattern: "B%"
 
       - name: originating_base_num
         description: ""
         tests:
           - dbt_expectations.expect_column_to_exist
+          - dbt_expectations.expect_column_value_lengths_to_equal:
+              value: 6
+          - dbt_expectations.expect_column_values_to_match_like_pattern:
+              like_pattern: "B%"
 
       - name: request_datetime
         description: ""
@@ -339,6 +358,9 @@ models:
         description: ""
         tests:
           - dbt_expectations.expect_column_to_exist
+          - not_null
+          - dbt_expectations.expect_column_values_to_match_like_pattern:
+              like_pattern: "%.parquet"
 
   - name: stg__central_park_weather  
     description: ""
@@ -414,5 +436,8 @@ models:
       - name: filename
         description: ""
         tests:
+          - not_null
           - dbt_expectations.expect_column_to_exist
+          - dbt_expectations.expect_column_values_to_match_like_pattern:
+              like_pattern: "%.csv"
 
