@@ -42,12 +42,22 @@ sources:
           - name: usertype
             data_type: CHARACTER VARYING(256)
             description: "User type"
+            tests:
+              - dbt_expectations.expect_column_distinct_values_to_be_in_set:
+                  value_set: ['Customer','Subscriber']
+                  row_condition: "usertype is not null"
           - name: birth year
             data_type: CHARACTER VARYING(256)
             description: "User birth year"
           - name: gender
             data_type: CHARACTER VARYING(256)
             description: "User gender"
+            tests: 
+              - dbt_expectations.expect_column_distinct_values_to_be_in_set:
+                  value_set: ['0','1','2']
+                  row_condition: "gender is not null"
+                  config:
+                    severity: warn
           - name: ride_id
             data_type: CHARACTER VARYING(256)
             description: "Ride ID"
