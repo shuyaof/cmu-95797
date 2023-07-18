@@ -86,6 +86,9 @@ models:
           - dbt_expectations.expect_column_to_exist
           - dbt_expectations.expect_column_values_to_be_of_type:
               column_type: double
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: -90.0
+              max_value: 90.0
 
 
       - name: start_lng
@@ -95,6 +98,10 @@ models:
           - dbt_expectations.expect_column_to_exist
           - dbt_expectations.expect_column_values_to_be_of_type:
               column_type: double
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: -180.0
+              max_value: 180.0
+
 
       - name: end_station_id
         description: ""
@@ -112,6 +119,9 @@ models:
           - dbt_expectations.expect_column_values_to_be_of_type:
               column_type: double
           - dbt_expectations.expect_column_to_exist
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: -90.0
+              max_value: 90.0
 
       - name: end_lng
         description: ""
@@ -119,6 +129,10 @@ models:
           - dbt_expectations.expect_column_to_exist
           - dbt_expectations.expect_column_values_to_be_of_type:
               column_type: double
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: -180.0
+              max_value: 180.0
+
 
       - name: filename
         description: ""
