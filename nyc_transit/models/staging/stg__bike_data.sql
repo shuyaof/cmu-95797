@@ -44,7 +44,7 @@ renamed as (
 select
 	coalesce(starttime, started_at)::timestamp as started_at_ts,
 	coalesce(stoptime, ended_at)::timestamp as ended_at_ts,
-	coalesce(tripduration::int,datediff('second', started_at_ts, ended_at_ts)) as tripduration,
+	coalesce(tripduration::int,datediff('second', started_at_ts, ended_at_ts)) tripduration,
 	coalesce("start station id", start_station_id) as start_station_id,  
 	coalesce("start station name", start_station_name) as start_station_name,
 	coalesce("start station latitude", start_lat)::double as start_lat,
@@ -55,34 +55,3 @@ select
 	coalesce("end station longitude", end_lng)::double as end_lng,
 	filename
 from renamed
-where tripduration > 0 --remove garbabge negative trip duration records
-and ended_at_ts > started_at_ts --check if end timestamp is bigger than start timestamp
-group by starttime,-- the below group by statement are used to remove duplicate records
-        stoptime,
-        "start station id",
-        "start station name",
-        "start station latitude",
-        "start station longitude",
-        "end station id",
-        "end station name",
-        "end station latitude",
-        "end station longitude",
-        bikeid,
-        usertype,
-        "birth year",
-        gender,
-        ride_id,
-        rideable_type,
-        started_at,
-        ended_at,
-        start_station_name,
-        start_station_id,
-        end_station_name,
-        end_station_id,
-        start_lat,
-        start_lng,
-        end_lat,
-        end_lng,
-        member_casual,
-        filename,
-        tripduration
