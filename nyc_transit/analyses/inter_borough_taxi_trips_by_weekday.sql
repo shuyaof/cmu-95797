@@ -22,5 +22,5 @@ select
     cte1.weekday as weekday,
     cte1.total_trips as total_trips,
     cte2.diff_boro_trips as diff_boro_trips,
-    100 * cte2.diff_boro_trips / cte1.total_trips as percentage_diff_boro_trips
+    cte2.diff_boro_trips / cte1.total_trips as percentage_diff_boro_trips
 from cte1 join cte2 on cte1.weekday = cte2.weekday 
