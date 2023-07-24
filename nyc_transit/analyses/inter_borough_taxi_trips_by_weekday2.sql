@@ -1,20 +1,28 @@
--- naive JOIN strategy
-with all_trips as
-(select 
-    weekday(pickup_datetime) as weekday, 
-    count(*) trips
-    from {{ ref('mart__fact_all_taxi_trips') }} t
-    group by all),
+-- flag strategy
 
-inter_borough as
+with trips as
 (select 
     weekday(pickup_datetime) as weekday, 
-    count(*) as trips
+    pl.borough != dl.borough as is_inter_borough
 from {{ ref('mart__fact_all_taxi_trips') }} t
 join {{ ref('mart__dim_locations') }} pl on t.PUlocationID = pl.LocationID
 join {{ ref('mart__dim_locations') }} dl on t.DOlocationID = dl.LocationID
-where pl.borough != dl.borough
-group by all)
+),
+
+all_trips as
+(select weekday,
+        count(*) as trips
+from trips
+group by all
+),
+
+inter_borough as
+(select weekday,
+        count(*) as trips
+from trips
+where is_inter_borough
+group by all
+)
 
 select all_trips.weekday,
        all_trips.trips as all_trips,

@@ -1,9 +1,11 @@
--- naive JOIN strategy
+-- JOIN strategy, excluding NULL locations
+
 with all_trips as
 (select 
     weekday(pickup_datetime) as weekday, 
     count(*) trips
     from {{ ref('mart__fact_all_taxi_trips') }} t
+    where PUlocationID is not null and DOlocationID is not null
     group by all),
 
 inter_borough as

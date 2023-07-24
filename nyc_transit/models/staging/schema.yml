@@ -25,8 +25,6 @@ models:
           - dbt_expectations.expect_column_to_exist
           - dbt_expectations.expect_column_values_to_be_of_type:
               column_type: int
-              config:
-                severity: warn   
 
       - name: start_station_id
         description: ""
@@ -65,7 +63,7 @@ models:
       - name: end_lat
         description: ""
         tests:
-          # - not_null failed test
+          - not_null
           - dbt_expectations.expect_column_to_exist
           - dbt_expectations.expect_column_values_to_be_of_type:
               column_type: double
@@ -76,7 +74,7 @@ models:
       - name: end_lng
         description: ""
         tests:
-          # - not_null failed test
+          - not_null
           - dbt_expectations.expect_column_to_exist
           - dbt_expectations.expect_column_values_to_be_of_type:
               column_type: double
@@ -234,8 +232,6 @@ models:
           - dbt_expectations.expect_column_to_exist
           - dbt_expectations.expect_column_values_to_be_of_type:
               column_type: int
-              config:
-                severity: warn   
 
       - name: year
         description: ""
@@ -244,8 +240,6 @@ models:
           - dbt_expectations.expect_column_to_exist
           - dbt_expectations.expect_column_values_to_be_of_type:
               column_type: int
-              config:
-                severity: warn   
           - dbt_expectations.expect_column_values_to_be_between:
               min_value: 2013
 
@@ -256,8 +250,6 @@ models:
           - dbt_expectations.expect_column_to_exist
           - dbt_expectations.expect_column_values_to_be_of_type:
               column_type: int
-              config:
-                severity: warn   
           - dbt_expectations.expect_column_values_to_be_between:
               min_value: 1
               max_value: 12
@@ -276,8 +268,6 @@ models:
           - dbt_expectations.expect_column_to_exist
           - dbt_expectations.expect_column_values_to_be_of_type:
               column_type: int
-              config:
-                severity: warn   
 
       - name: weekday
         description: ""
