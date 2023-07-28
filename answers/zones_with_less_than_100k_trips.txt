@@ -1,0 +1,29 @@
+┌───────────────────────────────────────────────┬────────────┐
+│                     Zone                      │ taxi_trips │
+│                    varchar                    │   int128   │
+├───────────────────────────────────────────────┼────────────┤
+│ City Island                                   │      76991 │
+│ Crotona Park                                  │      58091 │
+│ Pelham Bay Park                               │      77580 │
+│ Rikers Island                                 │         84 │
+│ Green-Wood Cemetery                           │      15292 │
+│ Marine Park/Floyd Bennett Field               │      35007 │
+│ Newark Airport                                │      19301 │
+│ Battery Park                                  │      49384 │
+│ Governor's Island/Ellis Island/Liberty Island │         90 │
+│ Highbridge Park                               │      36593 │
+│ Inwood Hill Park                              │      89276 │
+│ Randalls Island                               │      46132 │
+│ Astoria Park                                  │      13699 │
+│ Breezy Point/Fort Tilden/Riis Beach           │      31520 │
+│ Broad Channel                                 │      15717 │
+│ Forest Park/Highland Park                     │      50841 │
+│ Jamaica Bay                                   │       1012 │
+│ Willets Point                                 │      22328 │
+│ Arden Heights                                 │      87820 │
+│ Freshkills Park                               │       7934 │
+│ Great Kills Park                              │        600 │
+│ Rossville/Woodrow                             │      75021 │
+├───────────────────────────────────────────────┴────────────┤
+│ 22 rows                                          2 columns │
+└────────────────────────────────────────────────────────────┘

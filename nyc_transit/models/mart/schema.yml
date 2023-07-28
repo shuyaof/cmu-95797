@@ -109,3 +109,8 @@ models:
 
       - name: duration_sec
         description: ""
+
+  - name: mart__fact_trips_by_borough
+    description: "number of trips grouped by borough"
+    columns:
+      - name: started_at_ts
