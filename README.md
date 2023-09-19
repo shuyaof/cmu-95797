@@ -1,1 +1,2 @@
-# cmu-95797-23m6
+# NYC Transit Data Warehousing
+This project leverages big data to revolutionize NYC transit system, where I extract, clean, and organize vast data from diverse sources like taxi pickup times, bike trip duration and weather info. Utilizing SQL analytics, I dissect this data, uncovering patterns and insights that guide us in optimizing routes and enhancing passenger experiences. It's a thrilling journey, marked by constant innovation and the pursuit of a more efficient and responsive urban mobility network.
